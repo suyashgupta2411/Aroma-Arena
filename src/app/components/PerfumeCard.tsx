@@ -5,6 +5,7 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import ExpandedPerfumeView from "./ExpandedPerfumeView";
 
+// Find this in your PerfumeCard.tsx file
 interface PerfumeProps {
   perfume: {
     id: number;
@@ -20,8 +21,15 @@ interface PerfumeProps {
       middle: string[];
       base: string[];
     };
-    sizeOptions?: string[];
-    similarFragrances?: string[];
+    sizeOptions?: {
+      size: string;
+      price: string;
+    }[];
+    similarFragrances?: {
+      name: string;
+      description: string;
+      rating: number;
+    }[];
   };
 }
 

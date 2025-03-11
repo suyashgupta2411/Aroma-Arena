@@ -6,6 +6,30 @@ import PerfumeCard from "./components/PerfumeCard";
 import { perfumesData } from "./data/perfumes";
 import gsap from "gsap";
 
+type Perfume = {
+  id: number;
+  name: string;
+  brand: string;
+  description: string;
+  image: string;
+  price: string;
+  rating: number;
+  category: string;
+  fragranceNotes?: {
+    top: string[];
+    middle: string[];
+    base: string[];
+  };
+  sizeOptions?: {
+    size: string;
+    price: string;
+  }[];
+  similarFragrances?: {
+    name: string;
+    description: string;
+    rating: number;
+  }[];
+};
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [paused, setPaused] = useState(false);
