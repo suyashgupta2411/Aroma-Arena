@@ -15,8 +15,29 @@ interface PerfumeProps {
     price: string;
     rating: number;
     category: string;
+    fragranceNotes?: {
+      top: string[];
+      middle: string[];
+      base: string[];
+    };
+    sizeOptions?: string[];
+    similarFragrances?: string[];
   };
 }
+
+const defaultFragranceNotes = {
+  top: [],
+  middle: [],
+  base: [],
+};
+
+const defaultSizeOptions: { size: string; price: string }[] = [
+  { size: "default", price: "0" }, // Provide a default structure
+];
+
+const defaultSimilarFragrances = [
+  { name: "Default Fragrance", description: "Default description", rating: 0 }, // Provide a default structure
+];
 
 const PerfumeCard: FC<PerfumeProps> = ({ perfume }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -141,7 +162,22 @@ const PerfumeCard: FC<PerfumeProps> = ({ perfume }) => {
       {/* Expanded view modal */}
       {isExpanded && (
         <ExpandedPerfumeView
-          perfume={perfume}
+          perfume={{
+            ...perfume,
+            fragranceNotes: perfume.fragranceNotes || defaultFragranceNotes,
+            sizeOptions:
+              Array.isArray(perfume.sizeOptions) &&
+              perfume.sizeOptions.every((option) => typeof option === "object")
+                ? perfume.sizeOptions
+                : defaultSizeOptions,
+            similarFragrances:
+              Array.isArray(perfume.similarFragrances) &&
+              perfume.similarFragrances.every(
+                (option) => typeof option === "object"
+              )
+                ? perfume.similarFragrances
+                : defaultSimilarFragrances,
+          }}
           onClose={() => setIsExpanded(false)}
         />
       )}
