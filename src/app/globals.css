@@ -1,0 +1,28 @@
+@import "tailwindcss"; /* This is optional, depending on your Tailwind version */
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 76, 29, 149;
+  --background-end-rgb: 49, 46, 129;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom right,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    )
+    fixed;
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2 bg-gradient-to-r from-pink-600 to-purple-600 rounded-full text-white font-medium hover:from-pink-700 hover:to-purple-700 transition-colors;
+  }
+
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden border border-white/20;
+  }
+}
